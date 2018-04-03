@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
@@ -34,9 +35,8 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private String lastName;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateOfBirth;
-
+    @ManyToMany()
+    private Course course;
     public Long getId() {
         return id;
     }
