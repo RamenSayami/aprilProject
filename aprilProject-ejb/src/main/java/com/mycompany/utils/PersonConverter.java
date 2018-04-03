@@ -5,7 +5,7 @@
  */
 package com.mycompany.utils;
 
-import com.mycompany.model.entity.Person;
+import com.mycompany.model.entity.Student;
 import com.mycompany.model.DTO.PersonDto;
 import java.util.Date;
 
@@ -15,8 +15,8 @@ import java.util.Date;
  */
 public class PersonConverter {
     
-    public static Person convertToEntity(PersonDto personDto){
-        Person personEntity = new Person();
+    public static Student convertToEntity(PersonDto personDto){
+        Student personEntity = new Student();
         personEntity.setFirstName(personDto.getFirstName());
         personEntity.setLastName(personDto.getLastName());
         
@@ -27,7 +27,7 @@ public class PersonConverter {
         return personEntity;
     }
     
-    public static PersonDto convertToDto(Person person){
+    public static PersonDto convertToDto(Student person){
         
         PersonDto personDto = new PersonDto();
         personDto.setFirstName(person.getFirstName());

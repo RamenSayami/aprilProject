@@ -6,7 +6,7 @@
 package com.mycompany.DAOimpl;
 
 import com.mycompany.DAO.staffDAO;
-import com.mycompany.model.entity.Staff;
+import com.mycompany.model.entity.Course;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,7 +22,7 @@ public class staffDAOimpl implements staffDAO {
     EntityManager entityManager;
 
     @Override
-    public boolean insert(Staff staff) {
+    public boolean insert(Course staff) {
         try{
             entityManager.persist(staff);
             return true;
@@ -33,9 +33,9 @@ public class staffDAOimpl implements staffDAO {
     }
 
     @Override
-    public Staff getStaff(long id) {
+    public Course getStaff(long id) {
         try{
-            return entityManager.find(Staff.class, id);
+            return entityManager.find(Course.class, id);
         }catch(Exception e){
             return null;
         }

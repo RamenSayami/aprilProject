@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.utils;
-import com.mycompany.model.entity.Staff;
+import com.mycompany.model.entity.Course;
 import com.mycompany.model.DTO.StaffDto;
 /**
  *
@@ -12,7 +12,7 @@ import com.mycompany.model.DTO.StaffDto;
  */
 public class StaffConverter {
     
-    public static StaffDto convertToDto(Staff staff){
+    public static StaffDto convertToDto(Course staff){
         StaffDto staffDto = new StaffDto();
         staffDto.setFirstName(staff.getFirstName());
         staffDto.setLastName(staff.getLastName());
@@ -21,8 +21,8 @@ public class StaffConverter {
         return staffDto;
     }
     
-    public static Staff convertToStaff(StaffDto staffDto){
-        Staff staff = new Staff();
+    public static Course convertToStaff(StaffDto staffDto){
+        Course staff = new Course();
         staff.setFirstName(staffDto.getFirstName());
         staff.setLastName(staffDto.getLastName());
         staff.setPosition(staffDto.getPosition());

@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package com.mycompany.DAO;
-import com.mycompany.model.entity.Staff;
+import com.mycompany.model.entity.Course;
 /**
  *
  * @author ramen
  */
 public interface staffDAO {
     
-    public boolean insert(Staff staff);
+    public boolean insert(Course staff);
     
-    public Staff getStaff(long id);
+    public Course getStaff(long id);
     
 }

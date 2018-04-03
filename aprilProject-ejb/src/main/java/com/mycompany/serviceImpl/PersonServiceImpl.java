@@ -9,7 +9,7 @@ import com.mycompany.model.DTO.PersonDto;
 import com.mycompany.DAO.personDAO;
 import com.mycompany.service.PersonService;
 import javax.inject.Inject;
-import com.mycompany.model.entity.Person;
+import com.mycompany.model.entity.Student;
 import com.mycompany.utils.PersonConverter;
 import java.util.Date;
 import javax.ws.rs.core.Response;
@@ -27,14 +27,14 @@ public class PersonServiceImpl implements PersonService {
     public boolean insertIntoDatabase(PersonDto personDto) {
         //calculate date here, and then convert to entity... 
 
-        Person person = PersonConverter.convertToEntity(personDto);
+        Student person = PersonConverter.convertToEntity(personDto);
 
         return personDao.insertOne(person);
     }
 
     @Override
     public Response returnAgeOfPerson(long id) {
-        Person person = personDao.getOne(id);
+        Student person = personDao.getOne(id);
 
         if (person != null) {
             PersonDto personWithAge = PersonConverter.convertToDto(person);

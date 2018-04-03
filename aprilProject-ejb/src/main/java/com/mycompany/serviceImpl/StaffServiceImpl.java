@@ -5,7 +5,7 @@ import com.mycompany.model.DTO.StaffDto;
 import com.mycompany.service.StaffService;
 import javax.inject.Inject;
 import com.mycompany.DAO.staffDAO;
-import com.mycompany.model.entity.Staff;
+import com.mycompany.model.entity.Course;
 import com.mycompany.utils.StaffConverter;
 import javax.ws.rs.core.Response;
 /*
@@ -25,7 +25,7 @@ public class StaffServiceImpl implements StaffService{
     
     @Override
     public Response retrieveStaff(long id) {
-        Staff staff = staffDao.getStaff(id);
+        Course staff = staffDao.getStaff(id);
         if(staff == null){
             return Response.status(Response.Status.NO_CONTENT).build();
         }else{
@@ -35,7 +35,7 @@ public class StaffServiceImpl implements StaffService{
 
     @Override
     public boolean addNewStaff(StaffDto staffDto) {
-        Staff staff;
+        Course staff;
         staff = StaffConverter.convertToStaff(staffDto);
         
         return staffDao.insert(staff);

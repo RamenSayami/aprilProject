@@ -1,2 +1,8 @@
-*.class
+aprilProject-ear/target/
+aprilProject-ejb/target/
+aprilProject-web/target/
 
+# Java class files
+*.class
+*.ear
+*.war

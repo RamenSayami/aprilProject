@@ -5,14 +5,14 @@
  */
 package com.mycompany.DAO;
 
-import com.mycompany.model.entity.Person;
+import com.mycompany.model.entity.Student;
 /**
  *
  * @author ramen
  */
 public interface personDAO {
     
-    public boolean insertOne(Person person);
+    public boolean insertOne(Student person);
     
-    public Person getOne(long id);
+    public Student getOne(long id);
 }
