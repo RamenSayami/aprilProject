@@ -12,5 +12,8 @@ import com.mycompany.model.entity.Designation;
  */
 public interface DesignationDAO {
     
-    public Designation findOne(String position);
+    public Designation findByPosition(String position);
+    
+    public Designation findByPositionAndSalary(String position, float salary);
+
 }

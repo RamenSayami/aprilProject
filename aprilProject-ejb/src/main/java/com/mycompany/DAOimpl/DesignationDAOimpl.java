@@ -23,16 +23,33 @@ public class DesignationDAOimpl implements DesignationDAO{
     @PersistenceContext(unitName = "testDb")
     EntityManager em;
 
+//    @Override
+//    public Designation findOne(String position) {
+//        Query query = em.createNamedQuery("Designation.findByPosition").setParameter("pos", position);
+//        Designation designationList = (Designation)query.getSingleResult();
+//        if(designationList.isEmpty()){
+//            return null;
+//        }else{
+//            return designationList.get(0);
+//        }
+//        
+//    }
+
     @Override
-    public Designation findOne(String position) {
+    public Designation findByPosition(String position) {
         Query query = em.createNamedQuery("Designation.findByPosition").setParameter("pos", position);
-        List<Designation> designationList = query.getResultList();
-        if(designationList.isEmpty()){
+        try{
+            Designation designation =  (Designation) query.getSingleResult();
+            return designation;
+        }catch(Exception e){
+            System.out.println("No entitiy found");
             return null;
-        }else{
-            return designationList.get(0);
         }
-        
+    }
+
+    @Override
+    public Designation findByPositionAndSalary(String position, float salary) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -5,3 +5,4 @@ aprilProject-web/target/
 # Java class files
 *.class
 *.ear
+*.war

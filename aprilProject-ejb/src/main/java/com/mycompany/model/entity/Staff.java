@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -25,8 +24,6 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "staffs")
 public class Staff implements Serializable {
-    
-    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,8 +37,8 @@ public class Staff implements Serializable {
     
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "designation_fk", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "designation_fk", unique = false)
     private Designation designation;
     
     public Long getId() {

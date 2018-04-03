@@ -8,11 +8,17 @@ import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.entity.Staff;
 import com.mycompany.model.DTO.StaffDto;
 import com.mycompany.model.entity.Designation;
+import javax.inject.Inject;
+import com.mycompany.DAO.DesignationDAO;
 /**
  *
  * @author ramen
  */
 public class StaffConverter {
+    
+    @Inject
+    DesignationDAO designationDAO;
+         
     
     public static StaffDto convertToDto(Staff staff){
         DesignationDto designationDto = new DesignationDto();
@@ -27,16 +33,23 @@ public class StaffConverter {
         return staffDto;
     }
     
-    public static Staff convertToStaff(StaffDto staffDto){
+    public Staff convertToStaff(StaffDto staffDto){
         System.out.println("Converting staffDto to staff entity");
-        Designation designation = new Designation();
-        designation.setPosition(staffDto.getDesignation().getPosition());
-        designation.setSalary(staffDto.getDesignation().getSalary());
         
         Staff staff = new Staff();
         staff.setFirstName(staffDto.getFirstName());
         staff.setLastName(staffDto.getLastName());
-        staff.setDesignation(designation);
+        
+        Designation designation = designationDAO.findByPosition(staffDto.getDesignation().getPosition());
+        
+        if(designation == null){
+            Designation d = new Designation();
+            d.setPosition(staffDto.getDesignation().getPosition());
+            d.setSalary(staffDto.getDesignation().getSalary());
+            staff.setDesignation(d);
+        }else{
+            staff.setDesignation(designation);
+        }
         
         if(staffDto.getPhoneNumber() == null){
             staff.setPhoneNumber("");

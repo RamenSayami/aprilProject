@@ -23,6 +23,9 @@ public class StaffServiceImpl implements StaffService{
     @Inject
     staffDAO staffDao;
     
+    @Inject
+    StaffConverter staffConverter;
+    
     @Override
     public Response retrieveStaff(long id) {
         Staff staff = staffDao.getStaff(id);
@@ -37,7 +40,7 @@ public class StaffServiceImpl implements StaffService{
     public boolean addNewStaff(StaffDto staffDto) {
         System.out.println("Adding new staff service entered");
         Staff staff;
-        staff = StaffConverter.convertToStaff(staffDto);
+        staff = staffConverter.convertToStaff(staffDto);
         
         return staffDao.insert(staff);
     }
