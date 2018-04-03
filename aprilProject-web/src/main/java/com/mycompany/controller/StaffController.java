@@ -19,6 +19,7 @@ import javax.ws.rs.core.Response;
  * Sub Resource for Staff data
  * @author ramen
  */
+@Path("/worker")
 public class StaffController {
     
     @Inject
@@ -36,6 +37,7 @@ public class StaffController {
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public boolean newStaff(StaffDto staffDto){
+        System.out.println("Entered adding new staff controller, REST api is hit!");
         return staffService.addNewStaff(staffDto);
     }
 }

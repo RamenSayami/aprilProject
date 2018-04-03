@@ -6,17 +6,24 @@
 package com.mycompany.model.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 /**
  *
  * @author ramen
  */
 @Entity
+@Table(name = "staffs")
 public class Staff implements Serializable {
     
     
@@ -30,8 +37,12 @@ public class Staff implements Serializable {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
-    private String position;
+    
+    private String phoneNumber;
+
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "designation_fk", nullable = false)
+    private Designation designation;
     
     public Long getId() {
         return id;
@@ -57,12 +68,20 @@ public class Staff implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
-        return position;
+    public Designation getDesignation() {
+        return designation;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setDesignation(Designation designation) {
+        this.designation = designation;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override

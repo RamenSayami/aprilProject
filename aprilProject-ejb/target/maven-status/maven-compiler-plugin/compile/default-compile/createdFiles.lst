@@ -1,4 +1,3 @@
-com/mycompany/DAO/personDAO.class
 com/mycompany/model/entity/Designation_.class
 com/mycompany/serviceImpl/StaffServiceImpl.class
 com/mycompany/DAO/staffDAO.class
@@ -8,13 +7,7 @@ com/mycompany/utils/StaffConverter.class
 com/mycompany/DAOimpl/DesignationDAOimpl.class
 com/mycompany/service/StaffService.class
 com/mycompany/model/entity/Designation.class
-com/mycompany/utils/PersonConverter.class
 com/mycompany/DAOimpl/staffDAOimpl.class
-com/mycompany/serviceImpl/PersonServiceImpl.class
 com/mycompany/model/DTO/DesignationDto.class
-com/mycompany/model/entity/Person_.class
-com/mycompany/model/DTO/PersonDto.class
 com/mycompany/model/entity/Staff.class
-com/mycompany/model/entity/Person.class
 com/mycompany/model/entity/Staff_.class
-com/mycompany/service/PersonService.class

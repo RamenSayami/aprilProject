@@ -6,18 +6,24 @@
 package com.mycompany.model.DTO;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
  * @author ramen
  */
 public class StaffDto {
+
     @NotNull
     String firstName;
     @NotNull
     String lastName;
+
     @NotNull
-    String position;
+    DesignationDto designation;
+
+    @Pattern(regexp = "\\d{10}", message = "InvalidPhonenumber")
+    String phoneNumber;
 
     public String getFirstName() {
         return firstName;
@@ -35,12 +41,20 @@ public class StaffDto {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
-        return position;
+    public DesignationDto getDesignation() {
+        return designation;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setDesignation(DesignationDto designation) {
+        this.designation = designation;
     }
-    
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
 }

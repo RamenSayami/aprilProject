@@ -35,6 +35,7 @@ public class StaffServiceImpl implements StaffService{
 
     @Override
     public boolean addNewStaff(StaffDto staffDto) {
+        System.out.println("Adding new staff service entered");
         Staff staff;
         staff = StaffConverter.convertToStaff(staffDto);
         

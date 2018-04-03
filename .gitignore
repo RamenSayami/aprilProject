@@ -1,7 +1,7 @@
-aprilProject-ear/target/*
-aprilProject-ejb/target/*
-aprilProject-web/target/*
-aprilProject-ejb/target/generated-sources/*
+aprilProject-ear/target/
+aprilProject-ejb/target/
+aprilProject-web/target/
+
 # Java class files
 *.class
 *.ear

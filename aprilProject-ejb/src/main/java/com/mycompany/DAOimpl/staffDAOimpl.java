@@ -23,10 +23,13 @@ public class staffDAOimpl implements staffDAO {
 
     @Override
     public boolean insert(Staff staff) {
+        System.out.println("Inserting to Database");
         try{
             entityManager.persist(staff);
+            System.out.println("Done");
             return true;
         }catch(Exception e){
+            System.out.println("failed");
             e.printStackTrace();
             return false;
         }
