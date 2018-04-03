@@ -4,3 +4,4 @@ aprilProject-web/target/*
 aprilProject-ejb/target/generated-sources/*
 # Java class files
 *.class
+*.ear
