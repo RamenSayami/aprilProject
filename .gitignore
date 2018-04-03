@@ -1,6 +1,6 @@
-/aprilProject/aprilProject-ear/target/
-/aprilProject/aprilProject-ejb/target/
-/aprilProject/aprilProject-web/target/
+aprilProject-ear/target/
+aprilProject-ejb/target/
+aprilProject-web/target/
 
 # Java class files
 *.class
