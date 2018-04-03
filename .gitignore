@@ -1,3 +1,6 @@
 /aprilProject/aprilProject-ear/target/
 /aprilProject/aprilProject-ejb/target/
 /aprilProject/aprilProject-web/target/
+
+# Java class files
+*.class
