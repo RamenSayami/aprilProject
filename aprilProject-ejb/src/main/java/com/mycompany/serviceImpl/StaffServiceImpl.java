@@ -5,9 +5,13 @@ import com.mycompany.model.DTO.StaffDto;
 import com.mycompany.service.StaffService;
 import javax.inject.Inject;
 import com.mycompany.DAO.staffDAO;
+import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.entity.Staff;
 import com.mycompany.utils.StaffConverter;
+import java.util.List;
 import javax.ws.rs.core.Response;
+import com.mycompany.DAO.DesignationDAO;
+import com.mycompany.model.entity.Designation;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,6 +26,9 @@ public class StaffServiceImpl implements StaffService{
 
     @Inject
     staffDAO staffDao;
+    
+    @Inject
+    DesignationDAO designationDAO;
     
     @Inject
     StaffConverter staffConverter;
@@ -43,6 +50,19 @@ public class StaffServiceImpl implements StaffService{
         staff = staffConverter.convertToStaff(staffDto);
         
         return staffDao.insert(staff);
+    }
+
+    @Override
+    public Response findStaffForDesignation(DesignationDto designationDto) {
+        try{
+            Designation designation = designationDAO.findByPositionAndSalary(designationDto.getPosition(), designationDto.getSalary());
+            List<Staff> listOfStaffs = staffDao.findByDesignationFK(designation.getId());
+            List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoNoDesignation(listOfStaffs);
+            return Response.ok(lisfOfStaffDto).build();
+        }catch(Exception e){
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+        
     }
     
 }

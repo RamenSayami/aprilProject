@@ -10,6 +10,8 @@ import com.mycompany.model.DTO.StaffDto;
 import com.mycompany.model.entity.Designation;
 import javax.inject.Inject;
 import com.mycompany.DAO.DesignationDAO;
+import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author ramen
@@ -59,5 +61,20 @@ public class StaffConverter {
         
         System.out.println("Converted! " + staff.toString());
         return staff;
+    }
+    
+    
+    public List<StaffDto> convertListToDtoNoDesignation(List<Staff> staffList){
+        List<StaffDto> staffDtoList = new ArrayList<>();
+        for(Staff staff: staffList){
+            StaffDto staffDto = new StaffDto();
+            staffDto.setFirstName(staff.getFirstName());
+            staffDto.setLastName(staff.getLastName());
+            staffDto.setPhoneNumber(staff.getPhoneNumber());
+            
+            staffDtoList.add(staffDto);
+        }
+        
+        return staffDtoList;
     }
 }

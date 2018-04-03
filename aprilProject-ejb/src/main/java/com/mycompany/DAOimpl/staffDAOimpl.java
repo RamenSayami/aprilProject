@@ -12,6 +12,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import com.mycompany.model.entity.Designation;
+import java.util.List;
+import javax.persistence.Query;
 /**
  *
  * @author ramen
@@ -54,5 +56,11 @@ public class staffDAOimpl implements staffDAO {
             return null;
         }
     }
-    
+
+    @Override
+    public List<Staff> findByDesignationFK(long fk) {
+        Query query = entityManager.createNamedQuery("Staff.findByDesignationFK").setParameter("desFk", fk);
+        List<Staff> listOfStaff = (List<Staff>) query.getResultList();
+        return listOfStaff;
+    }
 }

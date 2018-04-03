@@ -5,6 +5,7 @@
  */
 package com.mycompany.DAO;
 import com.mycompany.model.entity.Staff;
+import java.util.List;
 /**
  *
  * @author ramen
@@ -14,5 +15,7 @@ public interface staffDAO {
     public boolean insert(Staff staff);
     
     public Staff getStaff(long id);
+    
+    public List<Staff> findByDesignationFK(long fk);
     
 }
