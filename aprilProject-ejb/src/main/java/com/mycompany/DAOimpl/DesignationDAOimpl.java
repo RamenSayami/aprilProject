@@ -49,7 +49,14 @@ public class DesignationDAOimpl implements DesignationDAO{
 
     @Override
     public Designation findByPositionAndSalary(String position, float salary) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Query query = em.createNamedQuery("Designation.findByPositionAndSalary").setParameter("pos", position).setParameter("sal", salary);
+        try{
+            Designation designation = (Designation) query.getSingleResult();
+            return designation;
+        }catch(Exception e){
+            System.out.println("No Entity Found");
+            return null;
+        }
     }
     
     

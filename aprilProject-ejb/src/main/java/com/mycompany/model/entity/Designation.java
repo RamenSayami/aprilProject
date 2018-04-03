@@ -23,7 +23,9 @@ import javax.persistence.Table;
 @Table(name = "designations")
 @NamedQueries({
         @NamedQuery(name = "Designation.findByPosition", 
-                query = "select d from Designation d where d.position = :pos")   
+                query = "select d from Designation d where d.position = :pos")   ,
+        @NamedQuery(name = "Designation.findByPositionAndSalary",
+                query = "select d from Designation d where d.position = :pos and d.salary = :sal")
 })
 public class Designation implements Serializable {
 

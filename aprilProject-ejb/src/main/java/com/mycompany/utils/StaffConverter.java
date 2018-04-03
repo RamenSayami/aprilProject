@@ -40,7 +40,7 @@ public class StaffConverter {
         staff.setFirstName(staffDto.getFirstName());
         staff.setLastName(staffDto.getLastName());
         
-        Designation designation = designationDAO.findByPosition(staffDto.getDesignation().getPosition());
+        Designation designation = designationDAO.findByPositionAndSalary(staffDto.getDesignation().getPosition(), staffDto.getDesignation().getSalary());
         
         if(designation == null){
             Designation d = new Designation();
