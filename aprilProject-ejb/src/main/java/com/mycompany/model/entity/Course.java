@@ -6,17 +6,25 @@
 package com.mycompany.model.entity;
 
 import java.io.Serializable;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author ramen
  */
 @Entity
+@Table(name = "courses")
 public class Course implements Serializable {
     
     
@@ -24,51 +32,54 @@ public class Course implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long courseId;
 
     @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
-    @Column(nullable = false)
-    private String position;
+    private String courseName;
     
-    public Long getId() {
-        return id;
+    private int semester;
+    
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)    
+    @JoinTable(name = "student_course", joinColumns = @JoinColumn(name = "student_id"), inverseJoinColumns = @JoinColumn(name = "course_id"))
+    private Set<Student> students;
+    
+    public Long getCourseId() {
+        return courseId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getCourseName() {
+        return courseName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getSemester() {
+        return semester;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSemester(int semester) {
+        this.semester = semester;
     }
 
-    public String getPosition() {
-        return position;
+    public Set<Student> getStudents() {
+        return students;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
-
+   
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (courseId != null ? courseId.hashCode() : 0);
         return hash;
     }
 
@@ -79,7 +90,7 @@ public class Course implements Serializable {
             return false;
         }
         Course other = (Course) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.courseId == null && other.courseId != null) || (this.courseId != null && !this.courseId.equals(other.courseId))) {
             return false;
         }
         return true;
@@ -87,7 +98,7 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.model.entity.Staff[ id=" + id + " ]";
+        return "com.mycompany.model.entity.Staff[ id=" + courseId + " ]";
     }
     
 }

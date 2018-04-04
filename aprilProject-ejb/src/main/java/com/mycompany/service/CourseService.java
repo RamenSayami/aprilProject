@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 package com.mycompany.service;
-import com.mycompany.model.DTO.StudentDto;
-import javax.ws.rs.core.Response;
+
+import com.mycompany.model.DTO.CourseDto;
+
 /**
  *
  * @author ramen
  */
-public interface StaffService {
+public interface CourseService {
     
-    public Response retrieveStaff(long id);
+    public boolean insertCourse(CourseDto courseDto);
     
-    public boolean addNewStaff(StudentDto staffDto);
 }

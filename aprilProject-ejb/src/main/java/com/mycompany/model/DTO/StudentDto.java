@@ -5,20 +5,23 @@
  */
 package com.mycompany.model.DTO;
 
+import java.util.List;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author ramen
  */
-public class StaffDto {
+public class StudentDto {
+    
     @NotNull
     String firstName;
+    
     @NotNull
     String lastName;
-    @NotNull
-    String position;
-
+  
+    List<CourseDto> courses;
+    
     public String getFirstName() {
         return firstName;
     }
@@ -35,12 +38,12 @@ public class StaffDto {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
-        return position;
+    public List<CourseDto> getCourses() {
+        return courses;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setCourses(List<CourseDto> courses) {
+        this.courses = courses;
     }
-    
+
 }

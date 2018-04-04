@@ -6,7 +6,8 @@
 package com.mycompany.model.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,15 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.validation.constraints.NotNull;
+
 
 /**
  *
  * @author ramen
  */
 @Entity
-@Table(name = "person")
+@Table(name = "students")
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,8 +35,9 @@ public class Student implements Serializable {
     @Column(nullable = false)
     private String lastName;
     
-    @ManyToMany()
-    private Course course;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "students")
+    private Set<Course> courses;
+    
     public Long getId() {
         return id;
     }
@@ -61,14 +62,14 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Set<Course> getCourses() {
+        return courses;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setCourses(Set<Course> courses) {
+        this.courses = courses;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -5,7 +5,7 @@
  */
 package com.mycompany.service;
 
-import com.mycompany.model.DTO.PersonDto;
+import com.mycompany.model.DTO.CourseDto;
 import javax.ws.rs.core.Response;
 
 /**
@@ -14,7 +14,7 @@ import javax.ws.rs.core.Response;
  */
 public interface PersonService {
     
-    public boolean insertIntoDatabase(PersonDto personDto);
+    public boolean insertIntoDatabase(CourseDto personDto);
     
     public Response returnAgeOfPerson(long id);
 }
