@@ -47,7 +47,9 @@ public class StaffController {
     @POST
     @Path("/getStaff")
     @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response findStaff(DesignationDto designationDto){
+        System.out.println("Entered finding staffs according to designations");
         return staffService.findStaffForDesignation(designationDto);
     }
 }

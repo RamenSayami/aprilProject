@@ -48,14 +48,14 @@ public class DesignationDAOimpl implements DesignationDAO{
     }
 
     @Override
-    public Designation findByPositionAndSalary(String position, float salary) {
+    public Designation findByPositionAndSalary(String position, float salary) throws Exception{
         Query query = em.createNamedQuery("Designation.findByPositionAndSalary").setParameter("pos", position).setParameter("sal", salary);
         try{
             Designation designation = (Designation) query.getSingleResult();
             return designation;
         }catch(Exception e){
             System.out.println("No Entity Found");
-            return null;
+            throw new Exception("No Entity Found");
         }
     }
     

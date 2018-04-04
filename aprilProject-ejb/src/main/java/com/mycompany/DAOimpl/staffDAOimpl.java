@@ -11,9 +11,9 @@ import com.mycompany.model.entity.Staff;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import com.mycompany.model.entity.Designation;
 import java.util.List;
 import javax.persistence.Query;
+import com.mycompany.model.entity.Designation;
 /**
  *
  * @author ramen
@@ -24,21 +24,12 @@ public class staffDAOimpl implements staffDAO {
     @PersistenceContext(unitName = "testDb")
     EntityManager entityManager;
     
-    private DesignationDAO designationDAO;
-
     @Override
     public boolean insert(Staff staff) {
         System.out.println("Inserting to Database");
         try{
                 entityManager.merge(staff);
-                
-////            staff.setDesignation(designationDAO.findOne("1"));
-//            Designation d = designationDAO.findOne(staff.getDesignation().getPosition(), staff.getDesignation().getSalary());
-//            if(d == null) {
-//            }else{
-//                staff.getDesignation().setId(d.getId());
-//            }
-//            
+  
             System.out.println("Done");
             return true;
         }catch(Exception e){
@@ -58,9 +49,11 @@ public class staffDAOimpl implements staffDAO {
     }
 
     @Override
-    public List<Staff> findByDesignationFK(long fk) {
-        Query query = entityManager.createNamedQuery("Staff.findByDesignationFK").setParameter("desFk", fk);
+    public List<Staff> findByDesignationFK(Designation fk) {
+        
+        Query query = entityManager.createNamedQuery("Staff.findByDesignationFK").setParameter("desfk", fk);
         List<Staff> listOfStaff = (List<Staff>) query.getResultList();
+        System.out.println("Found list of staffs" + listOfStaff);
         return listOfStaff;
     }
 }

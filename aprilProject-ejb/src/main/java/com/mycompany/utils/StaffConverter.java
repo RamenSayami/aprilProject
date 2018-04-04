@@ -12,6 +12,8 @@ import javax.inject.Inject;
 import com.mycompany.DAO.DesignationDAO;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author ramen
@@ -42,15 +44,16 @@ public class StaffConverter {
         staff.setFirstName(staffDto.getFirstName());
         staff.setLastName(staffDto.getLastName());
         
-        Designation designation = designationDAO.findByPositionAndSalary(staffDto.getDesignation().getPosition(), staffDto.getDesignation().getSalary());
         
-        if(designation == null){
+        try {
+            Designation designation;
+            designation = designationDAO.findByPositionAndSalary(staffDto.getDesignation().getPosition(), staffDto.getDesignation().getSalary());
+            staff.setDesignation(designation);
+        } catch (Exception ex) {
             Designation d = new Designation();
             d.setPosition(staffDto.getDesignation().getPosition());
             d.setSalary(staffDto.getDesignation().getSalary());
             staff.setDesignation(d);
-        }else{
-            staff.setDesignation(designation);
         }
         
         if(staffDto.getPhoneNumber() == null){

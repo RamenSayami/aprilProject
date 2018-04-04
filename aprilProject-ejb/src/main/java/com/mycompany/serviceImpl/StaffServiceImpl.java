@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ws.rs.core.Response;
 import com.mycompany.DAO.DesignationDAO;
 import com.mycompany.model.entity.Designation;
+import javax.ws.rs.core.GenericEntity;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -54,12 +55,22 @@ public class StaffServiceImpl implements StaffService{
 
     @Override
     public Response findStaffForDesignation(DesignationDto designationDto) {
+        
+        System.out.println("Trying to find designation!");
         try{
             Designation designation = designationDAO.findByPositionAndSalary(designationDto.getPosition(), designationDto.getSalary());
-            List<Staff> listOfStaffs = staffDao.findByDesignationFK(designation.getId());
+            System.out.println("Designation found: "+ designation);
+            System.out.println("Finging staffs of same designation...");
+            List<Staff> listOfStaffs = staffDao.findByDesignationFK(designation);
+            
+            System.out.println("Converting list to Dto: ");
             List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoNoDesignation(listOfStaffs);
-            return Response.ok(lisfOfStaffDto).build();
+            System.out.println("Converted!" + lisfOfStaffDto);
+            GenericEntity<List<StaffDto>> entity = new GenericEntity<List<StaffDto>>(lisfOfStaffDto) {};
+
+            return Response.ok(entity).build();
         }catch(Exception e){
+            e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         

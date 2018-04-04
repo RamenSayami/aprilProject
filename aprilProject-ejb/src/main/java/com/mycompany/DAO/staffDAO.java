@@ -5,6 +5,7 @@
  */
 package com.mycompany.DAO;
 import com.mycompany.model.entity.Staff;
+import com.mycompany.model.entity.Designation;
 import java.util.List;
 /**
  *
@@ -16,6 +17,6 @@ public interface staffDAO {
     
     public Staff getStaff(long id);
     
-    public List<Staff> findByDesignationFK(long fk);
+    public List<Staff> findByDesignationFK(Designation fk);
     
 }

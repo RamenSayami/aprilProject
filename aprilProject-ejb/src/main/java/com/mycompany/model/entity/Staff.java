@@ -27,7 +27,7 @@ import javax.persistence.Table;
 @Table(name = "staffs")
 @NamedQueries({
         @NamedQuery(name = "Staff.findByDesignationFK", 
-                query = "select s from Staff s where s.designation = :desFk")
+                query = "select s from Staff s where s.designation = :desfk")
 })
 public class Staff implements Serializable {
 
