@@ -21,7 +21,11 @@ public interface StaffService {
     
     public Response findStaffForDesignation(DesignationDto designationDto);
     
+    public Response findStaffWithDesHibernate(DesignationDto designationDto);
+    
     public List<StaffDto> getAllStaffs();
     
     public List<DesignationDto> getAllJobs();
+    
+    public List<StaffDto> getAllStaffsHibernate();
 }

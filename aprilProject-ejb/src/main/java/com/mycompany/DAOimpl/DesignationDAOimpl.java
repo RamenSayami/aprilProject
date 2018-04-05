@@ -17,11 +17,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.mycompany.model.entity.Staff;
 import java.util.ArrayList;
-import javax.inject.Inject;
 import javax.persistence.TypedQuery;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -33,8 +34,6 @@ public class DesignationDAOimpl implements DesignationDAO{
     @PersistenceContext(unitName = "testDb")
     EntityManager em;
     
-    @Inject
-    Session session;
 
 //    @Override
 //    public Designation findOne(String position) {
@@ -71,6 +70,18 @@ public class DesignationDAOimpl implements DesignationDAO{
             throw new Exception("No Entity Found");
         }
     }
+    
+    @Override
+    public Designation findByPosAndSalHibernate(String position, float salary){
+        System.out.println("Finding by position and salary");
+        Session session = em.unwrap(Session.class);
+        Criteria criteria = session.createCriteria(Designation.class);
+        criteria.add(Restrictions.like("position", position,MatchMode.EXACT))
+                .add(Restrictions.eq("salary", salary));
+        Designation des = (Designation) criteria.uniqueResult();
+        System.out.println("Designation found: "+ des);
+        return des;
+    }
 
     @Override
     public List<Designation> getAllJobs() {
@@ -90,17 +101,14 @@ public class DesignationDAOimpl implements DesignationDAO{
         return jobList;
     }
     
+    @Override
     public List<Designation> hibernateGetAllJobs(){
-        
+        Session session = em.unwrap(Session.class);
         Criteria cr = session.createCriteria(Designation.class);
-        
         cr.addOrder(Order.asc("salary"));
-        
         List result = cr.list();
         
         return result;
     }
-    
-    
-    
+   
 }

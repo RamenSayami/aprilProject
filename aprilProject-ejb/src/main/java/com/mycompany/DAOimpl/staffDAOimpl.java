@@ -19,6 +19,9 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 /**
  *
  * @author ramen
@@ -81,5 +84,18 @@ public class staffDAOimpl implements staffDAO {
         }
         
         return staffList;
+    }
+
+    @Override
+    public List<Staff> hibernateGetAllStaffs() {
+        Session session = entityManager.unwrap(Session.class);
+        
+        Criteria criteria = session.createCriteria(Staff.class);
+        
+        criteria.addOrder(Order.asc("firstName"));
+        
+        List staffs = criteria.list();
+        
+        return staffs;
     }
 }
