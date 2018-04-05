@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -25,6 +27,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "courses")
+@NamedQueries({
+    @NamedQuery(name = "Course.findByCourseNameAndSemester", 
+            query = "SELECT c FROM Course c WHERE c.courseName =:courseName and  c.semester =:sem")
+})
 public class Course implements Serializable {
     
     

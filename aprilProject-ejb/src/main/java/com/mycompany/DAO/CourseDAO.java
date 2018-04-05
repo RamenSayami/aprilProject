@@ -11,4 +11,6 @@ import com.mycompany.model.entity.Course;
  */
 public interface CourseDAO {
     public boolean insertOne(Course course);
+    
+    public Course findByCourseNameAndSemester(String courseName, int sem);
 }

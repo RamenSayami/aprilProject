@@ -20,9 +20,13 @@ public class StudentServiceImpl implements StudentService{
     @Inject
     StudentDAO studentDAO;
     
+    @Inject
+    StudentConverter studentConverter;
+    
     @Override
     public boolean addStudent(StudentDto studentDto) {
-        Student student = StudentConverter.convertToStudent(studentDto);
+        System.out.println("Entered addStudent Service");
+        Student student = studentConverter.convertToStudent(studentDto);
         return studentDAO.insertStudent(student);
     }
     
