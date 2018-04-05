@@ -12,6 +12,16 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import com.mycompany.model.entity.Staff;
+import java.util.ArrayList;
+import javax.inject.Inject;
+import javax.persistence.TypedQuery;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 
 /**
  *
@@ -22,6 +32,9 @@ public class DesignationDAOimpl implements DesignationDAO{
     
     @PersistenceContext(unitName = "testDb")
     EntityManager em;
+    
+    @Inject
+    Session session;
 
 //    @Override
 //    public Designation findOne(String position) {
@@ -58,7 +71,35 @@ public class DesignationDAOimpl implements DesignationDAO{
             throw new Exception("No Entity Found");
         }
     }
+
+    @Override
+    public List<Designation> getAllJobs() {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
+        Root<Staff> from = criteriaQuery.from(Staff.class);
+        
+        CriteriaQuery<Object> select = criteriaQuery.select(from);
+        select.orderBy(criteriaBuilder.asc(from.get("salary")));
+        TypedQuery<Object> typedQuery = em.createQuery(criteriaQuery);
+        
+        List<Object> resultList = typedQuery.getResultList();
+        List<Designation> jobList = new ArrayList<>();
+        for(Object o : resultList){
+            jobList.add((Designation) o);
+        }
+        return jobList;
+    }
     
+    public List<Designation> hibernateGetAllJobs(){
+        
+        Criteria cr = session.createCriteria(Designation.class);
+        
+        cr.addOrder(Order.asc("salary"));
+        
+        List result = cr.list();
+        
+        return result;
+    }
     
     
     

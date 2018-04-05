@@ -5,6 +5,7 @@
  */
 package com.mycompany.DAO;
 import com.mycompany.model.entity.Designation;
+import java.util.List;
 
 /**
  *
@@ -15,5 +16,9 @@ public interface DesignationDAO {
     public Designation findByPosition(String position);
     
     public Designation findByPositionAndSalary(String position, float salary) throws Exception;
+
+    public List<Designation> getAllJobs();
+    
+    public List<Designation> hibernateGetAllJobs();
 
 }

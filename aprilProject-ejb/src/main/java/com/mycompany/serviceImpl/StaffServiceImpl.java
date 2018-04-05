@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import com.mycompany.DAO.DesignationDAO;
 import com.mycompany.model.entity.Designation;
 import javax.ws.rs.core.GenericEntity;
+import com.mycompany.utils.DesignationConverter;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -73,6 +74,25 @@ public class StaffServiceImpl implements StaffService{
             e.printStackTrace();
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
+        
+    }
+
+    @Override
+    public List<StaffDto> getAllStaffs() {
+        List<Staff> staffList =  staffDao.getAllStaffs();
+        
+        List<StaffDto> staffDtoList = staffConverter.convertListToDtoNoDesignation(staffList);
+        
+        return staffDtoList;
+    }
+
+    @Override
+    public List<DesignationDto> getAllJobs() {
+        List<Designation> jobList =  designationDAO.hibernateGetAllJobs();
+        
+        List<DesignationDto> jobListDtos = DesignationConverter.convertDesignationToDto(jobList);
+        
+        return jobListDtos;
         
     }
     

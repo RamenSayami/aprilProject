@@ -19,4 +19,5 @@ public interface staffDAO {
     
     public List<Staff> findByDesignationFK(Designation fk);
     
+    public List<Staff> getAllStaffs();
 }

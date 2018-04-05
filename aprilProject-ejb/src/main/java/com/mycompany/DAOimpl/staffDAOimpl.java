@@ -14,6 +14,11 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 import javax.persistence.Query;
 import com.mycompany.model.entity.Designation;
+import java.util.ArrayList;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 /**
  *
  * @author ramen
@@ -55,5 +60,26 @@ public class staffDAOimpl implements staffDAO {
         List<Staff> listOfStaff = (List<Staff>) query.getResultList();
         System.out.println("Found list of staffs" + listOfStaff);
         return listOfStaff;
+    }
+
+    @Override
+    public List<Staff> getAllStaffs() {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Object> criteriaQuery = criteriaBuilder.createQuery();
+        Root<Staff> from = criteriaQuery.from(Staff.class);
+        
+        CriteriaQuery<Object> select = criteriaQuery.select(from);
+        select.orderBy(criteriaBuilder.asc(from.get("firstName")));
+        
+        TypedQuery<Object> typedQuery = entityManager.createQuery(select);
+        List<Object> resultList = typedQuery.getResultList();
+        
+        List<Staff> staffList= new ArrayList<>();
+        for(Object o : resultList){
+            Staff staff = (Staff) o;
+            staffList.add(staff);
+        }
+        
+        return staffList;
     }
 }

@@ -18,6 +18,7 @@ import com.mycompany.service.StaffService;
 import java.util.List;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
+import com.mycompany.model.DTO.StaffDto;
 /**
  * Sub Resource for Staff data
  * @author ramen
@@ -51,5 +52,19 @@ public class StaffController {
     public Response findStaff(DesignationDto designationDto){
         System.out.println("Entered finding staffs according to designations");
         return staffService.findStaffForDesignation(designationDto);
+    }
+    
+    @GET
+    @Path("getAllStaffs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<StaffDto> getAllStaff(){
+        return staffService.getAllStaffs();
+    }
+    
+    @GET
+    @Path("getAllJobs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<DesignationDto> getAllJobs(){
+        return staffService.getAllJobs();
     }
 }
