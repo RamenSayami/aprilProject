@@ -13,4 +13,5 @@ public interface AddressDAO {
     
     public boolean insertIntoDB(Address address);
 
+    public Address insetAddress(Address address);
 }

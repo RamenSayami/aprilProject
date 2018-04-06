@@ -42,5 +42,21 @@ public class AddressDAOimpl implements AddressDAO{
         }
         
     }
+
+    @Override
+    public Address insetAddress(Address address) {
+        try{
+            transaction.begin();
+            entityManager.persist(address);
+            entityManager.flush();
+            
+            transaction.commit();
+            return address;
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
     
 }
