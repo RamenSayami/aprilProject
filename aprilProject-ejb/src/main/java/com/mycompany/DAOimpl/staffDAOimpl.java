@@ -6,7 +6,6 @@
 package com.mycompany.DAOimpl;
 
 import com.mycompany.DAO.AddressDAO;
-import com.mycompany.DAO.DesignationDAO;
 import com.mycompany.DAO.staffDAO;
 import com.mycompany.model.entity.Address;
 import com.mycompany.model.entity.Staff;

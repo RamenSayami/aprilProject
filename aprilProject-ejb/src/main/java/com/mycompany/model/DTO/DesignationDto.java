@@ -5,7 +5,6 @@
  */
 package com.mycompany.model.DTO;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 /**

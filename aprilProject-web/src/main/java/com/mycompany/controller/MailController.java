@@ -9,7 +9,6 @@ import com.mycompany.model.DTO.MailDto;
 import com.mycompany.service.MailService;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;

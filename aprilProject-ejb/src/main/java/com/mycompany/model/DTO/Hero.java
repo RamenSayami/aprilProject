@@ -6,27 +6,24 @@
 package com.mycompany.model.DTO;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author ramen
  */
-@XmlRootElement
-public class HeroDto {
+public class Hero {
     
     int id;
     String name;
 
-    public HeroDto() {
+    public Hero() {
     }
 
-    public HeroDto(int id, String name) {
+    public Hero(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    @XmlElement
     public int getId() {
         return id;
     }
