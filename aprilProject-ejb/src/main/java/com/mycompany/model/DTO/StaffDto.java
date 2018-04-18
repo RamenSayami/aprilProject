@@ -25,6 +25,16 @@ public class StaffDto {
     @Pattern(regexp = "\\d{10}", message = "InvalidPhonenumber")
     String phoneNumber;
 
+    AddressDto address;
+
+    public AddressDto getAddress() {
+        return address;
+    }
+
+    public void setAddress(AddressDto address) {
+        this.address = address;
+    }
+    
     public String getFirstName() {
         return firstName;
         

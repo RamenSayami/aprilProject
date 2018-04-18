@@ -6,6 +6,7 @@
 package com.mycompany.service;
 import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.DTO.StaffDto;
+import com.mycompany.model.entity.Designation;
 import java.util.List;
 import javax.ws.rs.core.Response;
 /**
@@ -19,4 +20,12 @@ public interface StaffService {
     public boolean addNewStaff(StaffDto staffDto);
     
     public Response findStaffForDesignation(DesignationDto designationDto);
+    
+    public Response findStaffWithDesHibernate(DesignationDto designationDto);
+    
+    public List<StaffDto> getAllStaffs();
+    
+    public List<DesignationDto> getAllJobs();
+    
+    public List<StaffDto> getAllStaffsHibernate();
 }
