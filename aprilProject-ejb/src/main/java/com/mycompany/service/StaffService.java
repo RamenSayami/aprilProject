@@ -6,7 +6,6 @@
 package com.mycompany.service;
 import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.DTO.StaffDto;
-import com.mycompany.model.entity.Designation;
 import java.util.List;
 import javax.ws.rs.core.Response;
 /**
