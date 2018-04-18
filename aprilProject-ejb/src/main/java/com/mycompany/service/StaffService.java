@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package com.mycompany.service;
+import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.DTO.StaffDto;
+import java.util.List;
 import javax.ws.rs.core.Response;
 /**
  *
@@ -15,4 +17,6 @@ public interface StaffService {
     public Response retrieveStaff(long id);
     
     public boolean addNewStaff(StaffDto staffDto);
+    
+    public Response findStaffForDesignation(DesignationDto designationDto);
 }

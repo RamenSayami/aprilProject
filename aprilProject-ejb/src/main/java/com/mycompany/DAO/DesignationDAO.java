@@ -14,6 +14,6 @@ public interface DesignationDAO {
     
     public Designation findByPosition(String position);
     
-    public Designation findByPositionAndSalary(String position, float salary);
+    public Designation findByPositionAndSalary(String position, float salary) throws Exception;
 
 }
