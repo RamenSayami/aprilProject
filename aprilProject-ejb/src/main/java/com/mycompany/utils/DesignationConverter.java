@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class DesignationConverter {
     
-    public static List<DesignationDto> convertDesignationToDto(List<Designation> designations){
+    public List<DesignationDto> convertDesignationToDto(List<Designation> designations){
         List<DesignationDto> jobListDtos = new ArrayList<>();
         
         for(Designation des: designations){
@@ -27,4 +27,12 @@ public class DesignationConverter {
         }
         return jobListDtos;
     }
+
+    public DesignationDto convertToDto(Designation designation) {
+        DesignationDto des = new DesignationDto();
+        des.setPosition(designation.getPosition());
+        des.setSalary(designation.getSalary());
+        return des;
+    }
+    
 }

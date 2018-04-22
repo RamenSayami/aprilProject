@@ -48,7 +48,7 @@ public class Staff implements Serializable {
     @JoinColumn(name = "designation_fk", unique = false)
     private Designation designation;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "address_fk")
     private Address address;
     

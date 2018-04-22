@@ -39,7 +39,7 @@ public class staffDAOimpl implements staffDAO {
     AddressDAO addressDAO;
 
     @Override
-    public boolean insert(Staff staff) {
+    public Staff insert(Staff staff) throws Exception{
         System.out.println("Inserting to Database");
         if (staff.getAddress() != null) {
             Address address = addressDAO.insetAddress(staff.getAddress());
@@ -50,11 +50,10 @@ public class staffDAOimpl implements staffDAO {
             entityManager.merge(staff);
 
             System.out.println("Done");
-            return true;
+            return staff;
         } catch (Exception e) {
             System.out.println("failed");
-            e.printStackTrace();
-            return false;
+            throw e;
         }
     }
 
