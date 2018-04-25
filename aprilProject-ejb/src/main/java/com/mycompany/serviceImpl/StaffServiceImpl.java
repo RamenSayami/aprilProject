@@ -72,7 +72,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> listOfStaffs = staffDao.findByDesignationFK(designation);
 
             System.out.println("Converting list to Dto: ");
-            List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoNoDesignation(listOfStaffs);
+            List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoWithDesignationAndAddress(listOfStaffs);
             System.out.println("Converted!" + lisfOfStaffDto);
             GenericEntity<List<StaffDto>> entity = new GenericEntity<List<StaffDto>>(lisfOfStaffDto) {
             };
