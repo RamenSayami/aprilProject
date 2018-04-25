@@ -16,7 +16,7 @@ public interface StaffService {
     
     public Response retrieveStaff(long id);
     
-    public boolean addNewStaff(StaffDto staffDto);
+    public Response addNewStaff(StaffDto staffDto);
     
     public Response findStaffForDesignation(DesignationDto designationDto);
     

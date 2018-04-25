@@ -24,4 +24,15 @@ public class AddressConverter {
         
         return address;
     }
+    
+    public AddressDto convertToDto(Address address){
+        AddressDto addressDto = new AddressDto();
+        
+        addressDto.setCity(address.getCity());
+        addressDto.setCountry(address.getCountry());
+        addressDto.setDistrict(address.getDistrict());
+        addressDto.setStreet(address.getStreet());
+        
+        return addressDto;
+    }
 }

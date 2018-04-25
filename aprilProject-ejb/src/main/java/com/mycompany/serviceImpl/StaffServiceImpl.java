@@ -34,6 +34,9 @@ public class StaffServiceImpl implements StaffService {
 
     @Inject
     StaffConverter staffConverter;
+    
+    @Inject
+    DesignationConverter designationConverter;
 
     @Override
     public Response retrieveStaff(long id) {
@@ -41,17 +44,21 @@ public class StaffServiceImpl implements StaffService {
         if (staff == null) {
             return Response.status(Response.Status.NO_CONTENT).build();
         } else {
-            return Response.ok(StaffConverter.convertToDto(staff)).build();
+            return Response.ok(staffConverter.convertToDto(staff)).build();
         }
     }
 
     @Override
-    public boolean addNewStaff(StaffDto staffDto) {
+    public Response addNewStaff(StaffDto staffDto) {
         System.out.println("Adding new staff service entered");
         Staff staff;
         staff = staffConverter.convertToStaff(staffDto);
-
-        return staffDao.insert(staff);
+        try{
+            Staff addedStaff = staffDao.insert(staff);
+            return Response.ok(addedStaff).build();
+        }catch(Exception e){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @Override
@@ -65,7 +72,7 @@ public class StaffServiceImpl implements StaffService {
             List<Staff> listOfStaffs = staffDao.findByDesignationFK(designation);
 
             System.out.println("Converting list to Dto: ");
-            List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoNoDesignation(listOfStaffs);
+            List<StaffDto> lisfOfStaffDto = staffConverter.convertListToDtoWithDesignationAndAddress(listOfStaffs);
             System.out.println("Converted!" + lisfOfStaffDto);
             GenericEntity<List<StaffDto>> entity = new GenericEntity<List<StaffDto>>(lisfOfStaffDto) {
             };
@@ -80,9 +87,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<StaffDto> getAllStaffs() {
+        
+        System.out.println("GetAllStaff HIT!");
         List<Staff> staffList = staffDao.getAllStaffs();
 
-        List<StaffDto> staffDtoList = staffConverter.convertListToDtoNoDesignation(staffList);
+        List<StaffDto> staffDtoList = staffConverter.convertListToDtoWithDesignationAndAddress(staffList);
 
         return staffDtoList;
     }
@@ -91,8 +100,8 @@ public class StaffServiceImpl implements StaffService {
     public List<DesignationDto> getAllJobs() {
         List<Designation> jobList = designationDAO.hibernateGetAllJobs();
 
-        List<DesignationDto> jobListDtos = DesignationConverter.convertDesignationToDto(jobList);
-
+        List<DesignationDto> jobListDtos = designationConverter.convertDesignationToDto(jobList);
+        
         return jobListDtos;
 
     }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface staffDAO {
 
-    public boolean insert(Staff staff);
+    public Staff insert(Staff staff) throws Exception;
 
     public Staff getStaff(long id);
 

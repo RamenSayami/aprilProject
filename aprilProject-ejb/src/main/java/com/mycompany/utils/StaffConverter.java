@@ -15,8 +15,6 @@ import com.mycompany.model.DTO.AddressDto;
 import com.mycompany.model.entity.Address;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -29,16 +27,28 @@ public class StaffConverter {
 
     @Inject
     AddressConverter addressConverter;
+    
+    @Inject
+    DesignationConverter designationConverter;
 
-    public static StaffDto convertToDto(Staff staff) {
-        DesignationDto designationDto = new DesignationDto();
-        designationDto.setPosition(staff.getDesignation().getPosition());
-        designationDto.setSalary(staff.getDesignation().getSalary());
-
+    public StaffDto convertToDto(Staff staff) {
         StaffDto staffDto = new StaffDto();
         staffDto.setFirstName(staff.getFirstName());
         staffDto.setLastName(staff.getLastName());
+        if(staff.getPhoneNumber()!= null){
+            staffDto.setPhoneNumber(staff.getPhoneNumber());
+        }
+
+        DesignationDto designationDto = new DesignationDto();
+        designationDto.setPosition(staff.getDesignation().getPosition());
+        designationDto.setSalary(staff.getDesignation().getSalary());
         staffDto.setDesignation(designationDto);
+        
+        if (staff.getAddress() != null) {
+            AddressDto addressDto = addressConverter.convertToDto(staff.getAddress());
+            staffDto.setAddress(addressDto);
+        }
+        
 
         return staffDto;
     }
@@ -53,15 +63,17 @@ public class StaffConverter {
         try {
             Designation designation;
             designation = designationDAO.findByPositionAndSalary(staffDto.getDesignation().getPosition(), staffDto.getDesignation().getSalary());
+            
             staff.setDesignation(designation);
         } catch (Exception ex) {
             Designation d = new Designation();
             d.setPosition(staffDto.getDesignation().getPosition());
             d.setSalary(staffDto.getDesignation().getSalary());
+            
             staff.setDesignation(d);
         }
+        
         if (staffDto.getAddress() != null) {
-
             AddressDto addressDto = new AddressDto();
             addressDto.setCity(staffDto.getAddress().getCity());
             addressDto.setCountry(staffDto.getAddress().getCountry());
@@ -90,6 +102,36 @@ public class StaffConverter {
             staffDto.setLastName(staff.getLastName());
             staffDto.setPhoneNumber(staff.getPhoneNumber());
 
+            staffDtoList.add(staffDto);
+        }
+
+        return staffDtoList;
+    }
+
+    public List<StaffDto> convertListToDtoWithDesignation(List<Staff> staffList) {
+        List<StaffDto> staffDtoList = new ArrayList<>();
+        for (Staff staff : staffList) {
+            StaffDto staffDto = new StaffDto();
+            staffDto.setFirstName(staff.getFirstName());
+            staffDto.setLastName(staff.getLastName());
+            staffDto.setPhoneNumber(staff.getPhoneNumber());
+            staffDto.setDesignation(designationConverter.convertToDto(staff.getDesignation()));
+            staffDtoList.add(staffDto);
+        }
+
+        return staffDtoList;
+    }
+    
+    public List<StaffDto> convertListToDtoWithDesignationAndAddress(List<Staff> staffList) {
+        List<StaffDto> staffDtoList = new ArrayList<>();
+        for (Staff staff : staffList) {
+            StaffDto staffDto = new StaffDto();
+            staffDto.setFirstName(staff.getFirstName());
+            staffDto.setLastName(staff.getLastName());
+            staffDto.setPhoneNumber(staff.getPhoneNumber());
+            staffDto.setDesignation(designationConverter.convertToDto(staff.getDesignation()));
+            if(staff.getAddress()!=null)
+                staffDto.setAddress(addressConverter.convertToDto(staff.getAddress()));
             staffDtoList.add(staffDto);
         }
 

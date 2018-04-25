@@ -41,8 +41,9 @@ public class StaffController {
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean newStaff(StaffDto staffDto) {
+    public Response newStaff(StaffDto staffDto) {
         System.out.println("Entered adding new staff controller, REST api is hit!");
+        System.out.println("StaffDto -> Address"+ staffDto.getAddress().getCity());
         return staffService.addNewStaff(staffDto);
     }
 
