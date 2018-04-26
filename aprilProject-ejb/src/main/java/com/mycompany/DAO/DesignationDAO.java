@@ -16,12 +16,12 @@ public interface DesignationDAO {
 
     public Designation findByPosition(String position);
 
-    public Designation findByPositionAndSalary(String position, float salary) throws Exception;
+    public Designation findByPositionAndSalary(String position, double salary) throws Exception;
 
     public List<Designation> getAllJobs();
 
     public List<Designation> hibernateGetAllJobs();
 
-    public Designation findByPosAndSalHibernate(String position, float salary);
+    public Designation findByPosAndSalHibernate(String position, double salary);
 
 }

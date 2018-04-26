@@ -60,7 +60,7 @@ public class DesignationDAOimpl implements DesignationDAO{
     }
 
     @Override
-    public Designation findByPositionAndSalary(String position, float salary) throws Exception{
+    public Designation findByPositionAndSalary(String position, double salary) throws Exception{
         Query query = em.createNamedQuery("Designation.findByPositionAndSalary").setParameter("pos", position).setParameter("sal", salary);
         try{
             Designation designation = (Designation) query.getSingleResult();
@@ -72,7 +72,7 @@ public class DesignationDAOimpl implements DesignationDAO{
     }
     
     @Override
-    public Designation findByPosAndSalHibernate(String position, float salary){
+    public Designation findByPosAndSalHibernate(String position, double salary){
         System.out.println("Finding by position and salary");
         Session session = em.unwrap(Session.class);
         Criteria criteria = session.createCriteria(Designation.class);

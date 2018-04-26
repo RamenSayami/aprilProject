@@ -65,6 +65,7 @@ public class StaffServiceImpl implements StaffService {
     public Response findStaffForDesignation(DesignationDto designationDto) {
 
         System.out.println("Trying to find designation!");
+        System.out.println("designation: "+ designationDto.getPosition() + " salary:" + designationDto.getSalary());
         try {
             Designation designation = designationDAO.findByPositionAndSalary(designationDto.getPosition(), designationDto.getSalary());
             System.out.println("Designation found: " + designation);

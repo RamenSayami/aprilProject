@@ -37,7 +37,7 @@ public class Designation implements Serializable {
     @Column(nullable = false)
     String position;
     @Column(nullable = false)
-    float salary;
+    double salary;
 
     public Long getId() {
         return id;
@@ -55,11 +55,11 @@ public class Designation implements Serializable {
         this.position = position;
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

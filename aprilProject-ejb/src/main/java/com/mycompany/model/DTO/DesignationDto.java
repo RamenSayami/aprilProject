@@ -16,7 +16,7 @@ public class DesignationDto {
     @NotNull
     String position;
     @NotNull
-    float salary;
+    double salary;
 
     public String getPosition() {
         return position;
@@ -26,11 +26,11 @@ public class DesignationDto {
         this.position = position;
     }
 
-    public float getSalary() {
+    public double getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 

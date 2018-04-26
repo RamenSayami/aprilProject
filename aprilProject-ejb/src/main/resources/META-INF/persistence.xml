@@ -3,17 +3,16 @@
   <persistence-unit name="testDb" transaction-type="JTA">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>jdbc/test</jta-data-source>
-<!--    <class>com.mycompany.model.Person</class>-->
+    <!--    <class>com.mycompany.model.Person</class>-->
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-        <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
-        <property name="hibernate.transaction.jta.platform"
-                  value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
-        <property name="hibernate.hbm2ddl.auto" value="update"/>
-        <property name="hibernate.show_sql" value="false"/>
-        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-        <property name="hibernate.connection.useUnicode" value="true"/>
-        <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
+      <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->
+      <property name="hibernate.transaction.jta.platform" value="org.hibernate.service.jta.platform.internal.SunOneJtaPlatform"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="hibernate.connection.useUnicode" value="true"/>
+      <property name="hibernate.connection.characterEncoding" value="UTF-8"/>
     </properties>
   </persistence-unit>
 </persistence>
