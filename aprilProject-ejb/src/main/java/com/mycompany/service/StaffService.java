@@ -27,4 +27,6 @@ public interface StaffService {
     public List<DesignationDto> getAllJobs();
     
     public List<StaffDto> getAllStaffsHibernate();
+    
+    public boolean deleteStaffWithId(long id);
 }

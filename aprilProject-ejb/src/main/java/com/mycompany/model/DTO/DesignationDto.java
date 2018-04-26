@@ -13,10 +13,19 @@ import javax.validation.constraints.NotNull;
  */
 public class DesignationDto {
     
+    long id;
     @NotNull
     String position;
     @NotNull
     double salary;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getPosition() {
         return position;

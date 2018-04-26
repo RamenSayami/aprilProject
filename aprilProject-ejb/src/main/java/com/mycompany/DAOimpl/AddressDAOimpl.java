@@ -44,10 +44,10 @@ public class AddressDAOimpl implements AddressDAO{
     }
 
     @Override
-    public Address insetAddress(Address address) {
+    public Address insertAddress(Address address) {
         try{
             transaction.begin();
-            entityManager.persist(address);
+            entityManager.merge(address);
             entityManager.flush();
             
             transaction.commit();

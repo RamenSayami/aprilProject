@@ -10,29 +10,28 @@ import com.mycompany.model.entity.Address;
 
 /**
  *
- * @author ramen
+ * @author ramen    
  */
 public class AddressConverter {
-    
-    public Address convertToEntity(AddressDto addressDto){
+    public Address convertToEntity(AddressDto addressDto) {
         Address address = new Address();
-        
+        address.setId(addressDto.getId());
         address.setCountry(addressDto.getCountry());
         address.setCity(addressDto.getCity());
         address.setDistrict(addressDto.getDistrict());
         address.setStreet(addressDto.getStreet());
-        
+
         return address;
     }
-    
-    public AddressDto convertToDto(Address address){
+
+    public AddressDto convertToDto(Address address) {
         AddressDto addressDto = new AddressDto();
-        
+        addressDto.setId(address.getId());
         addressDto.setCity(address.getCity());
         addressDto.setCountry(address.getCountry());
         addressDto.setDistrict(address.getDistrict());
         addressDto.setStreet(address.getStreet());
-        
+
         return addressDto;
     }
 }

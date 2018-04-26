@@ -18,6 +18,7 @@ import java.util.List;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import com.mycompany.model.DTO.StaffDto;
+import javax.ws.rs.DELETE;
 
 /**
  * Sub Resource for Staff data
@@ -84,5 +85,12 @@ public class StaffController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<StaffDto> getAllStaffsHibernate() {
         return staffService.getAllStaffsHibernate();
+    }
+    
+    @DELETE
+    @Path("/delete/{id}")
+    public boolean deleteStaff(@PathParam("id") long id){
+        System.out.println("Delete staff hit!");
+        return staffService.deleteStaffWithId(id);
     }
 }

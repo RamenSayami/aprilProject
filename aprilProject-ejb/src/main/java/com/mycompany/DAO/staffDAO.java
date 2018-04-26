@@ -24,5 +24,7 @@ public interface staffDAO {
     public List<Staff> getAllStaffs();
 
     public List<Staff> hibernateGetAllStaffs();
+    
+    public boolean delete(Staff staff);
 
 }

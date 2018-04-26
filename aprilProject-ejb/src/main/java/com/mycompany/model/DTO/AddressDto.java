@@ -11,10 +11,19 @@ package com.mycompany.model.DTO;
  */
 public class AddressDto {
 
+    long id;
     String country;
     String district;
     String city;
     String street;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getCountry() {
         return country;

@@ -33,6 +33,7 @@ public class StaffConverter {
 
     public StaffDto convertToDto(Staff staff) {
         StaffDto staffDto = new StaffDto();
+        staffDto.setId(staff.getId());
         staffDto.setFirstName(staff.getFirstName());
         staffDto.setLastName(staff.getLastName());
         if(staff.getPhoneNumber()!= null){
@@ -89,6 +90,10 @@ public class StaffConverter {
         } else {
             staff.setPhoneNumber(staffDto.getPhoneNumber());
         }
+        
+        if(staffDto.getPhoneNumber() != null){
+            staff.setId(staffDto.getId());
+        }
 
         System.out.println("Converted! " + staff.toString());
         return staff;
@@ -98,10 +103,10 @@ public class StaffConverter {
         List<StaffDto> staffDtoList = new ArrayList<>();
         for (Staff staff : staffList) {
             StaffDto staffDto = new StaffDto();
+            staffDto.setId(staff.getId());
             staffDto.setFirstName(staff.getFirstName());
             staffDto.setLastName(staff.getLastName());
             staffDto.setPhoneNumber(staff.getPhoneNumber());
-
             staffDtoList.add(staffDto);
         }
 
@@ -112,6 +117,7 @@ public class StaffConverter {
         List<StaffDto> staffDtoList = new ArrayList<>();
         for (Staff staff : staffList) {
             StaffDto staffDto = new StaffDto();
+            staffDto.setId(staff.getId());
             staffDto.setFirstName(staff.getFirstName());
             staffDto.setLastName(staff.getLastName());
             staffDto.setPhoneNumber(staff.getPhoneNumber());
@@ -126,6 +132,7 @@ public class StaffConverter {
         List<StaffDto> staffDtoList = new ArrayList<>();
         for (Staff staff : staffList) {
             StaffDto staffDto = new StaffDto();
+            staffDto.setId(staff.getId());
             staffDto.setFirstName(staff.getFirstName());
             staffDto.setLastName(staff.getLastName());
             staffDto.setPhoneNumber(staff.getPhoneNumber());

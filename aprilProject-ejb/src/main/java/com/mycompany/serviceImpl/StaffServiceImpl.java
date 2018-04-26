@@ -130,4 +130,12 @@ public class StaffServiceImpl implements StaffService {
             return Response.ok(entity).build();
         }
     }
+
+    @Override
+    public boolean deleteStaffWithId(long id) {
+        Staff staffToDelete = staffDao.getStaff(id);
+        System.out.println("Staff To Delete: " + staffToDelete);
+        return staffDao.delete(staffToDelete);
+        
+    }
 }

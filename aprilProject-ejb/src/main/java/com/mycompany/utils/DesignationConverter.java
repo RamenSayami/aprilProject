@@ -19,7 +19,7 @@ public class DesignationConverter {
         
         for(Designation des: designations){
             DesignationDto designationDto = new DesignationDto();
-            
+            designationDto.setId(des.getId());
             designationDto.setPosition(des.getPosition());
             designationDto.setSalary(des.getSalary());
             
@@ -30,6 +30,7 @@ public class DesignationConverter {
 
     public DesignationDto convertToDto(Designation designation) {
         DesignationDto des = new DesignationDto();
+        des.setId(designation.getId());
         des.setPosition(designation.getPosition());
         des.setSalary(designation.getSalary());
         return des;

@@ -41,11 +41,11 @@ public class staffDAOimpl implements staffDAO {
     @Override
     public Staff insert(Staff staff) throws Exception{
         System.out.println("Inserting to Database");
-        if (staff.getAddress() != null) {
-            Address address = addressDAO.insetAddress(staff.getAddress());
-            staff.setAddress(address);
-        }
-        
+//        if (staff.getAddress() != null) {
+//            Address address = addressDAO.insertAddress(staff.getAddress());
+//            staff.setAddress(address);
+//        }
+//        
         try {
             entityManager.merge(staff);
 
@@ -107,5 +107,16 @@ public class staffDAOimpl implements staffDAO {
         List staffs = criteria.list();
 
         return staffs;
+    }
+
+    @Override
+    public boolean delete(Staff staff) {
+        try{
+            entityManager.remove(entityManager.contains(staff) ? staff: entityManager.merge(staff));
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

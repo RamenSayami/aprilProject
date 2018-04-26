@@ -14,6 +14,8 @@ import javax.validation.constraints.Pattern;
  */
 public class StaffDto {
 
+    long id;
+    
     @NotNull
     String firstName;
     @NotNull
@@ -26,6 +28,14 @@ public class StaffDto {
     String phoneNumber;
 
     AddressDto address;
+
+     public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public AddressDto getAddress() {
         return address;
@@ -52,6 +62,7 @@ public class StaffDto {
         this.lastName = lastName;
     }
 
+   
     public DesignationDto getDesignation() {
         return designation;
     }
