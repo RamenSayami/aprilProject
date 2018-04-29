@@ -3,7 +3,6 @@ package com.mycompany.serviceImpl;
 import com.mycompany.model.DTO.StaffDto;
 import com.mycompany.service.StaffService;
 import javax.inject.Inject;
-import com.mycompany.DAO.staffDAO;
 import com.mycompany.model.DTO.DesignationDto;
 import com.mycompany.model.entity.Staff;
 import com.mycompany.utils.StaffConverter;
@@ -13,6 +12,7 @@ import com.mycompany.DAO.DesignationDAO;
 import com.mycompany.model.entity.Designation;
 import javax.ws.rs.core.GenericEntity;
 import com.mycompany.utils.DesignationConverter;
+import com.mycompany.DAO.StaffDAO;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,7 +27,7 @@ import com.mycompany.utils.DesignationConverter;
 public class StaffServiceImpl implements StaffService {
 
     @Inject
-    staffDAO staffDao;
+    StaffDAO staffDao;
 
     @Inject
     DesignationDAO designationDAO;
@@ -134,8 +134,18 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public boolean deleteStaffWithId(long id) {
         Staff staffToDelete = staffDao.getStaff(id);
+        staffToDelete = checkForManyRelations(staffToDelete);
         System.out.println("Staff To Delete: " + staffToDelete);
         return staffDao.delete(staffToDelete);
-        
     }
+    
+    Staff checkForManyRelations(Staff checkThisStaff){
+        List<Staff> staffs = staffDao.findByDesignationFK(checkThisStaff.getDesignation());
+        Staff checkedStaff = checkThisStaff;
+        if(staffs.size()>1){
+            checkedStaff.setDesignation(null);
+        }
+        return checkedStaff;
+    }
+    
 }

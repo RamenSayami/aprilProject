@@ -6,8 +6,6 @@
 package com.mycompany.DAOimpl;
 
 import com.mycompany.DAO.AddressDAO;
-import com.mycompany.DAO.staffDAO;
-import com.mycompany.model.entity.Address;
 import com.mycompany.model.entity.Staff;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,13 +22,14 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import com.mycompany.DAO.StaffDAO;
 
 /**
  *
  * @author ramen
  */
 @Stateless
-public class staffDAOimpl implements staffDAO {
+public class StaffDAOimpl implements StaffDAO {
 
     @PersistenceContext(unitName = "testDb")
     EntityManager entityManager;
@@ -119,4 +118,6 @@ public class staffDAOimpl implements staffDAO {
             return false;
         }
     }
+
+ 
 }

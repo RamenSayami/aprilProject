@@ -6,7 +6,6 @@
 package com.mycompany.model.entity;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,47 +20,47 @@ import javax.persistence.Table;
  * @author ramen
  */
 @Entity
-@Table(name = "designations")
+@Table(name = "users")
 @NamedQueries({
-        @NamedQuery(name = "Designation.findByPosition", 
-                query = "select d from Designation d where d.position = :pos")   ,
-        @NamedQuery(name = "Designation.findByPositionAndSalary",
-                query = "select d from Designation d where d.position = :pos and d.salary = :sal")
+        @NamedQuery(name = "User.findByUserNameAndPassword", 
+                query = "select u from User u where u.userName = :uname and u.password = :pass")
 })
-public class Designation implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(nullable = false)
+    private String userName;
     
     @Column(nullable = false)
-    String position;
-    @Column(nullable = false)
-    double salary;
+    private String password;
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
     }
 
     @Override
@@ -75,10 +73,10 @@ public class Designation implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Designation)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Designation other = (Designation) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -87,7 +85,7 @@ public class Designation implements Serializable {
 
     @Override
     public String toString() {
-        return "com.mycompany.model.entity.Designation[ id=" + id + " ]";
+        return "com.mycompany.model.entity.User[ id=" + id + " ]";
     }
     
 }

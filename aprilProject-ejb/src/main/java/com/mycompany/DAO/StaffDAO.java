@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author ramen
  */
-public interface staffDAO {
+public interface StaffDAO {
 
     public Staff insert(Staff staff) throws Exception;
 
@@ -26,5 +26,5 @@ public interface staffDAO {
     public List<Staff> hibernateGetAllStaffs();
     
     public boolean delete(Staff staff);
-
+    
 }

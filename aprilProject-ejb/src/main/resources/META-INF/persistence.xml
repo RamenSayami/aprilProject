@@ -4,6 +4,7 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <jta-data-source>jdbc/test</jta-data-source>
     <!--    <class>com.mycompany.model.Person</class>-->
+    <class>com.mycompany.model.entity.User</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!--<property name="javax.persistence.schema-generation.database.action" value="create"/>-->

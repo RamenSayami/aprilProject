@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.controller.AddressController.class);
         resources.add(com.mycompany.controller.HeroController.class);
+        resources.add(com.mycompany.controller.LogInController.class);
         resources.add(com.mycompany.controller.MailController.class);
         resources.add(com.mycompany.controller.StaffController.class);
     }
